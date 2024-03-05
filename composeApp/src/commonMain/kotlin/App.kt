@@ -4,13 +4,12 @@ import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import moe.tlaster.precompose.PreComposeApp
-import org.jetbrains.compose.ui.tooling.preview.Preview
+import presentation.di.initKoin
 import presentation.navigation.navHost
 import presentation.theme.MoneyMateTheme
 
 
 @Composable
-@Preview
 fun App() {
     initKoin()
 
