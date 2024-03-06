@@ -4,7 +4,6 @@ import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import moe.tlaster.precompose.PreComposeApp
-import presentation.di.initKoin
 import presentation.navigation.navHost
 import presentation.theme.MoneyMateTheme
 
