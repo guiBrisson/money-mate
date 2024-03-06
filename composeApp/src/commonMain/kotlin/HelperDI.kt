@@ -1,6 +1,5 @@
-package presentation.di
-
 import org.koin.core.context.startKoin
+import presentation.di.viewModelModule
 
 
 fun initKoin() {
