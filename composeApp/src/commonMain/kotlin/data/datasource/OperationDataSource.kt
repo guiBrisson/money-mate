@@ -1,8 +1,7 @@
-package domain.repository
+package data.datasource
 
 import domain.model.Operation
 
-// TODO: implement properly
-interface OperationRepository {
+interface OperationDataSource {
     suspend fun getById(id: Int): Result<Operation>
 }
