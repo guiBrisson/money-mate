@@ -44,6 +44,8 @@ kotlin {
             implementation(compose.components.resources)
             implementation(compose.components.uiToolingPreview)
 
+            implementation(libs.kotlinx.datetime)
+
             implementation(libs.precompose.navigation)
             implementation(libs.precompose.viewmodel)
             implementation(libs.precompose.koin)
