@@ -9,6 +9,8 @@ fun MoneyMateTheme(content: @Composable () -> Unit) {
     val darkColorScheme = darkColors(
         primary = primary,
         onPrimary = onPrimary,
+        secondary = secondary,
+        onSecondary = onSecondary,
         background = background,
         onBackground = onBackground,
         surface = surface,
