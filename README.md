@@ -1,3 +1,23 @@
+Money Mate 🚧
+=============
+
+Introducing our personal finance app, designed to help users achieve their financial goals by tracking income, expenses,
+and investments. Users are able to add new transactions, view transaction history, and generate reports on their
+financial activity.
+
+### Adjustments and improvements 
+
+The project is under development (check the current design
+progress [here](https://www.figma.com/file/Q2BA5t7DqQz3Y5KGLy547h/Money-Mate?type=design&node-id=0%3A1&mode=design&t=mA3p5hAiQ2LU5zp4-1))
+and the next updates will focus on the following tasks:
+
+- [ ] Add Balance
+- [ ] Home
+- [ ] New Operation
+- [ ] Categories
+
+## App structure
+
 This is a Kotlin Multiplatform project targeting Android, iOS, Desktop. Learn more
 about [Kotlin Multiplatform](https://www.jetbrains.com/help/kotlin-multiplatform-dev/get-started.html)…
 
@@ -34,8 +54,8 @@ about [Kotlin Multiplatform](https://www.jetbrains.com/help/kotlin-multiplatform
         * `/theme` values such as `colors`, `typography` and `shapes`.
     * `app.kt` composable entry point for all platforms.
 
-Contributing to the Project
--------------------------
+## Contributing to the Project
+
 We welcome contributions to our project! If you want to contribute to our codebase, please follow these steps:
 
 ### Using GitFlow
@@ -64,9 +84,9 @@ the `develop` branch.
 To help us organize and manage our branches more efficiently, we use a system of branch prefixes. Here are some common
 branch prefixes and what they mean:
 
-| Prefix      | Description                                                                                                            |
-|-------------|------------------------------------------------------------------------------------------------------------------------|
-| `feature/`  | For feature-driven changes. Examples include new UI components, improved error handling, or additional features.       |
-| `fix/`      | For bug fixes and other maintenance-related changes.                                                                   |
-| `docs/`     | These branches are used to write, update, or fix documentation.                                                        |
-| `refactor/` | For significant improvements to the structure or organization of the codebase.                                         |
+| Prefix      | Description                                                                                                      |
+|-------------|------------------------------------------------------------------------------------------------------------------|
+| `feature/`  | For feature-driven changes. Examples include new UI components, improved error handling, or additional features. |
+| `fix/`      | For bug fixes and other maintenance-related changes.                                                             |
+| `docs/`     | These branches are used to write, update, or fix documentation.                                                  |
+| `refactor/` | For significant improvements to the structure or organization of the codebase.                                   |
