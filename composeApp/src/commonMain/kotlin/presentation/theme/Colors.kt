@@ -4,6 +4,8 @@ import androidx.compose.ui.graphics.Color
 
 val primary = Color(0xff276EF1)
 val onPrimary = Color.White
+val secondary = Color(0xff242424)
+val onSecondary = Color.White
 val background = Color(0xff181818)
 val onBackground = Color.White
 val surface = Color(0xff242424)
@@ -34,7 +36,7 @@ val blue600 = Color(0xff2563eb)
 val indigo500 = Color(0xff6366f1)
 val indigo600 = Color(0xff4f46e5)
 val violet500 = Color(0xff8b5cf6)
-val violat600 = Color(0xff7c3aed)
+val violet600 = Color(0xff7c3aed)
 val purple500 = Color(0xffa855f7)
 val purple600 = Color(0xff9333ea)
 val fuchsia500 = Color(0xffd946ef)
