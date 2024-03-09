@@ -21,7 +21,7 @@ import org.jetbrains.compose.ui.tooling.preview.Preview
 import presentation.theme.MoneyMateTheme
 
 @Composable
-internal fun BaseButton(
+private fun BaseButton(
     modifier: Modifier = Modifier,
     onClick: () -> Unit,
     color: Color,
