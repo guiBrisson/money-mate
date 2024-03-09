@@ -10,7 +10,7 @@ import androidx.compose.ui.test.*
 import kotlin.test.Test
 
 @OptIn(ExperimentalTestApi::class)
-class InputText {
+class InputTextTest {
 
     @Test
     fun `SearchInputText input value update`() = runComposeUiTest {

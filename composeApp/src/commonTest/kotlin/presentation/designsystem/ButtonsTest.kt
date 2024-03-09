@@ -14,7 +14,7 @@ import kotlin.test.Test
 
 
 @OptIn(ExperimentalTestApi::class)
-class Buttons {
+class ButtonsTest {
 
     @Test
     fun `PrimaryButton perform click`() = runComposeUiTest {
