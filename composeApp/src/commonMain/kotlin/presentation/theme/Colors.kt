@@ -10,6 +10,7 @@ val background = Color(0xff181818)
 val onBackground = Color.White
 val surface = Color(0xff242424)
 val onSurface = Color.White
+val border = Color(0xff313131)
 
 val red500 = Color(0xffef4444)
 val red600 = Color(0xffdc2626)
