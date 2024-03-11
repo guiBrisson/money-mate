@@ -46,11 +46,11 @@ kotlin {
             implementation(compose.components.uiToolingPreview)
 
             implementation(libs.kotlinx.datetime)
-
             implementation(libs.precompose.navigation)
             implementation(libs.precompose.viewmodel)
             implementation(libs.precompose.koin)
             implementation(libs.koin.core)
+            implementation(libs.multiplatform.settings)
         }
         desktopMain.dependencies {
             implementation(compose.desktop.currentOs)
