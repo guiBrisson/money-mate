@@ -88,4 +88,49 @@ class InputTextTest {
         onNodeWithTag("inputText").performTextInput("test")
         onNodeWithTag("inputText").assert(hasText("test"))
     }
+
+    @Test
+    fun `MoneyInputText assert numerical value`() = runComposeUiTest {
+        setContent {
+            var balance by remember { mutableStateOf("") }
+            MoneyInputText(
+                textFieldModifier = Modifier.testTag("moneyInputText"),
+                value = balance,
+                onValueChange = { balance = it }
+            )
+        }
+
+        onNodeWithTag("moneyInputText").performTextInput("test")
+        onNodeWithTag("moneyInputText").assert(hasText(""))
+    }
+
+    @Test
+    fun `MoneyInputText text visual transformation`() = runComposeUiTest {
+        setContent {
+            var balance by remember { mutableStateOf("") }
+            MoneyInputText(
+                textFieldModifier = Modifier.testTag("moneyInputText"),
+                value = balance,
+                onValueChange = { balance = it }
+            )
+        }
+
+        onNodeWithTag("moneyInputText").run {
+            performTextInput("1")
+            assert(hasText("0.01"))
+            performTextInput("1")
+            assert(hasText("0.11"))
+            performTextInput("1")
+            assert(hasText("1.11"))
+            performTextInput("1")
+            assert(hasText("11.11"))
+            performTextInput("1")
+            assert(hasText("111.11"))
+            performTextInput("1")
+            assert(hasText("1 111.11"))
+            performTextClearance()
+            assert(hasText(""))
+        }
+    }
+
 }

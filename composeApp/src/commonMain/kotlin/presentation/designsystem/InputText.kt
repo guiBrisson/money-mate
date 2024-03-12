@@ -26,8 +26,14 @@ import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.input.pointer.PointerIcon
 import androidx.compose.ui.input.pointer.pointerHoverIcon
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import presentation.theme.oswaldFontFamily
+import utils.MoneyVisualTransformation
+import utils.canBeLong
 
 
 @Composable
@@ -148,4 +154,53 @@ fun InputText(
         singleLine = true,
         label = basicLabel,
     )
+}
+
+
+@Composable
+fun MoneyInputText(
+    value: String,
+    onValueChange: (String) -> Unit,
+    modifier: Modifier = Modifier,
+    textFieldModifier: Modifier = Modifier,
+) {
+    Row(
+        modifier = modifier,
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.spacedBy(20.dp),
+    ) {
+        Text(
+            text = "$",
+            fontFamily = oswaldFontFamily(),
+            fontSize = 32.sp,
+            fontWeight = FontWeight.Light,
+        )
+
+        val textStyle = TextStyle(
+            fontSize = 48.sp,
+            fontFamily = oswaldFontFamily(),
+            color = MaterialTheme.colors.onBackground,
+            lineHeight = 48.sp,
+        )
+
+        BasicTextField(
+            modifier =  textFieldModifier,
+            value = value,
+            onValueChange = { if (it.canBeLong() || it.isEmpty()) onValueChange(it) },
+            textStyle = textStyle,
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
+            visualTransformation = MoneyVisualTransformation(),
+            cursorBrush = SolidColor(MaterialTheme.colors.onBackground),
+            decorationBox = { innerTextField ->
+                if (value.isEmpty()) {
+                    Text(
+                        text = "0.00",
+                        style = textStyle,
+                        color = MaterialTheme.colors.onBackground.copy(alpha = 0.6f),
+                    )
+                }
+                innerTextField()
+            }
+        )
+    }
 }

@@ -38,6 +38,6 @@ data class Balance(val value: Long) {
             return "$integerPart.$decimalPart"
         }
 
-        return "0.${valueString.padEnd(2, '0')}"
+        return "0.${valueString.padStart(2, '0')}"
     }
 }

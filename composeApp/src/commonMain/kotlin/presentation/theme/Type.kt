@@ -2,8 +2,10 @@ package presentation.theme
 
 import androidx.compose.runtime.Composable
 import androidx.compose.material.Typography
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.sp
 import moneymate.composeapp.generated.resources.*
 import moneymate.composeapp.generated.resources.Res
 import moneymate.composeapp.generated.resources.inter_light
@@ -34,5 +36,12 @@ fun oswaldFontFamily() = FontFamily(
 
 @Composable
 fun getTypography(): Typography {
-    return Typography(defaultFontFamily = interFontFamily())
+    return Typography(
+        defaultFontFamily = interFontFamily(),
+        button = TextStyle(
+            fontWeight = FontWeight.Medium,
+            fontSize = 14.sp,
+            lineHeight = 16.sp,
+        )
+    )
 }
