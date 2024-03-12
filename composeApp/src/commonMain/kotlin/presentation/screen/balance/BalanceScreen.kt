@@ -16,6 +16,7 @@ import org.jetbrains.compose.ui.tooling.preview.Preview
 import presentation.designsystem.MoneyInputText
 import presentation.designsystem.PrimaryButton
 import presentation.theme.MoneyMateTheme
+import utils.onboardPreference
 
 @Composable
 fun BalanceRoute(
@@ -23,11 +24,15 @@ fun BalanceRoute(
     onProceed: () -> Unit,
 ) {
     val viewModel = koinViewModel(BalanceViewModel::class)
+    var onboardDone by onboardPreference()
 
     BalanceScreen(
         modifier = modifier.fillMaxSize(),
-        onProceed = { viewModel.updateUsersBalance(it, onBalanceUpdated = onProceed) },
-        onContinueWithoutBalance = onProceed,
+        onProceed = {
+            viewModel.updateUsersBalance(it, onBalanceUpdated = onProceed)
+            onboardDone = true
+        },
+        onContinueWithoutBalance = { onProceed(); onboardDone = true },
     )
 }
 
