@@ -33,6 +33,12 @@ internal class BalanceTest {
     }
 
     @Test
+    fun `Balance constructor with single digit`() {
+        balance = Balance(1L)
+        assertEquals("0.01", balance.toString())
+    }
+
+    @Test
     fun `Balance constructor with trillion monetary value`() {
         balance = Balance(1_234_567_890_123_45L)
         assertEquals("1 234 567 890 123.45", balance.toString())
