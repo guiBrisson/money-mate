@@ -1,19 +1,12 @@
 package presentation.designsystem
 
-import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material.Icon
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Text
+import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.unit.dp
@@ -24,18 +17,19 @@ import presentation.theme.MoneyMateTheme
 private fun BaseButton(
     modifier: Modifier = Modifier,
     onClick: () -> Unit,
-    color: Color,
+    enabled: Boolean = true,
+    colors: ButtonColors = ButtonDefaults.buttonColors(),
     innerPadding: PaddingValues,
     shape: Shape = MaterialTheme.shapes.small,
-    content: @Composable BoxScope.() -> Unit,
+    content: @Composable RowScope.() -> Unit,
 ) {
-    Box(
-        modifier = modifier
-            .clip(shape)
-            .background(color = color)
-            .clickable(onClick = onClick)
-            .padding(innerPadding),
-        contentAlignment = Alignment.Center,
+    Button(
+        modifier = modifier,
+        onClick = onClick,
+        enabled = enabled,
+        colors = colors,
+        contentPadding = innerPadding,
+        shape = shape,
         content = content,
     )
 }
@@ -44,12 +38,17 @@ private fun BaseButton(
 fun PrimaryButton(
     modifier: Modifier = Modifier,
     onClick: () -> Unit,
-    content: @Composable BoxScope.() -> Unit,
+    enabled: Boolean = true,
+    content: @Composable RowScope.() -> Unit,
 ) {
     BaseButton(
         modifier = modifier,
         onClick = onClick,
-        color = MaterialTheme.colors.primary,
+        colors = ButtonDefaults.buttonColors(
+            backgroundColor = MaterialTheme.colors.primary,
+            contentColor = MaterialTheme.colors.onPrimary,
+        ),
+        enabled = enabled,
         innerPadding = PaddingValues(12.dp),
         content = content,
     )
@@ -59,12 +58,17 @@ fun PrimaryButton(
 fun SecondaryButton(
     modifier: Modifier = Modifier,
     onClick: () -> Unit,
-    content: @Composable BoxScope.() -> Unit,
+    enabled: Boolean = true,
+    content: @Composable RowScope.() -> Unit,
 ) {
     BaseButton(
         modifier = modifier,
         onClick = onClick,
-        color = MaterialTheme.colors.secondary,
+        colors = ButtonDefaults.buttonColors(
+            backgroundColor = MaterialTheme.colors.secondary,
+            contentColor = MaterialTheme.colors.onSecondary,
+        ),
+        enabled = enabled,
         innerPadding = PaddingValues(12.dp),
         content = content,
     )
@@ -80,11 +84,14 @@ fun FloatingButton(
     BaseButton(
         modifier = modifier,
         onClick = onClick,
-        color = MaterialTheme.colors.primary,
+        colors = ButtonDefaults.buttonColors(
+            backgroundColor = MaterialTheme.colors.primary,
+            contentColor = MaterialTheme.colors.onPrimary,
+        ),
         shape = CircleShape,
         innerPadding = PaddingValues(16.dp),
     ) {
-        Icon(imageVector = imageVector, contentDescription = contentDescription)
+        Icon(modifier = Modifier.size(28.dp), imageVector = imageVector, contentDescription = contentDescription)
     }
 }
 
