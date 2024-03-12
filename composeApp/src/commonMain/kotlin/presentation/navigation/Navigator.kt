@@ -11,12 +11,12 @@ import presentation.screen.home.HomeRoute
 import presentation.screen.operation.NewOperationRoute
 
 @Composable
-fun navHost(modifier: Modifier = Modifier) {
+fun navHost(modifier: Modifier = Modifier, initialRoute: String) {
     val nav = rememberNavigator()
     NavHost(
         modifier = modifier,
         navigator = rememberNavigator(),
-        initialRoute = Route.BALANCE,
+        initialRoute = initialRoute,
     ) {
         scene(route = Route.BALANCE) {
             BalanceRoute(onProceed = { nav.navigate(Route.HOME, NavOptions(popUpTo = PopUpTo.First())) })
