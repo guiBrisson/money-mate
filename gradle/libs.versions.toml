@@ -12,9 +12,10 @@ compose-plugin = "1.6.0"
 junit = "4.13.2"
 kotlin = "1.9.22"
 kotlinx-datetime = "0.6.0-RC.2"
-koin = "3.2.0"
+koin = "3.5.3"
 multiplatform-settings = "1.1.1"
 precompose = "1.5.11"
+sqldelight = "2.0.1"
 
 [libraries]
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
@@ -27,14 +28,21 @@ androidx-activity-compose = { module = "androidx.activity:activity-compose", ver
 compose-ui-tooling = { module = "androidx.compose.ui:ui-tooling", version.ref = "compose" }
 compose-ui-tooling-preview = { module = "androidx.compose.ui:ui-tooling-preview", version.ref = "compose" }
 koin-core = { group = "io.insert-koin", name = "koin-core", version.ref = "koin" }
+koin-android = { group = "io.insert-koin", name = "koin-android", version.ref = "koin" }
 kotlinx-datetime = { group = "org.jetbrains.kotlinx", name = "kotlinx-datetime", version.ref = "kotlinx-datetime" }
 multiplatform-settings = { group = "com.russhwolf", name = "multiplatform-settings-no-arg", version.ref = "multiplatform-settings" }
 precompose-navigation = { group = "moe.tlaster", name = "precompose", version.ref = "precompose" }
 precompose-viewmodel = { group = "moe.tlaster", name = "precompose-viewmodel", version.ref = "precompose" }
 precompose-koin = { group = "moe.tlaster", name = "precompose-koin", version.ref = "precompose" }
+sqldelight-driver-android = { group = "app.cash.sqldelight", name = "android-driver", version.ref = "sqldelight" }
+sqldelight-driver-jvm = { group = "app.cash.sqldelight", name = "sqlite-driver", version.ref = "sqldelight" }
+sqldelight-driver-native = { group = "app.cash.sqldelight", name = "native-driver", version.ref = "sqldelight" }
+sqldelight-runtime = { group = "app.cash.sqldelight", name = "runtime", version.ref = "sqldelight" }
+sqldelight-primitive-adapters = { group = "app.cash.sqldelight", name = "primitive-adapters", version.ref = "sqldelight" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
 androidLibrary = { id = "com.android.library", version.ref = "agp" }
 jetbrainsCompose = { id = "org.jetbrains.compose", version.ref = "compose-plugin" }
 kotlinMultiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
+sqldelight = { id = "app.cash.sqldelight", version.ref = "sqldelight" }

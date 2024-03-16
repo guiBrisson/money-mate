@@ -5,6 +5,7 @@ plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsCompose)
+    alias(libs.plugins.sqldelight)
 }
 
 kotlin {
@@ -15,9 +16,9 @@ kotlin {
             }
         }
     }
-    
+
     jvm("desktop")
-    
+
     listOf(
         iosX64(),
         iosArm64(),
@@ -28,13 +29,16 @@ kotlin {
             isStatic = true
         }
     }
-    
+
     sourceSets {
         val desktopMain by getting
-        
+
         androidMain.dependencies {
             implementation(libs.compose.ui.tooling.preview)
             implementation(libs.androidx.activity.compose)
+            implementation(libs.sqldelight.driver.android)
+            implementation(libs.koin.core)
+            implementation(libs.koin.android)
         }
         commonMain.dependencies {
             implementation(compose.runtime)
@@ -51,9 +55,15 @@ kotlin {
             implementation(libs.precompose.koin)
             implementation(libs.koin.core)
             implementation(libs.multiplatform.settings)
+            implementation(libs.sqldelight.runtime)
+            implementation(libs.sqldelight.primitive.adapters)
         }
         desktopMain.dependencies {
             implementation(compose.desktop.currentOs)
+            implementation(libs.sqldelight.driver.jvm)
+        }
+        iosMain.dependencies {
+            implementation(libs.sqldelight.driver.native)
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)
@@ -107,6 +117,14 @@ compose.desktop {
             targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Deb)
             packageName = "com.github.guibrisson"
             packageVersion = "1.0.0"
+        }
+    }
+}
+
+sqldelight {
+    databases {
+        create("MoneyMateDatabase") {
+            packageName.set("com.github.guibrisson.db")
         }
     }
 }

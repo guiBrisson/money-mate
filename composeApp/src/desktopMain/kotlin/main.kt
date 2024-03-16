@@ -6,6 +6,8 @@ import androidx.compose.ui.window.rememberWindowState
 
 
 fun main() = application {
+    initKoin()
+
     val windowState = rememberWindowState(
         size = DpSize(393.dp, 852.dp)
     )

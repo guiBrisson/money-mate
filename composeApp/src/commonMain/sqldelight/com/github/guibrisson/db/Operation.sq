@@ -1,0 +1,15 @@
+import kotlinx.datetime.LocalDateTime;
+
+CREATE TABLE OperationTable (
+    id INTEGER PRIMARY KEY AUTOINCREMENT, -- Stored as INTEGER in db, retrieved as Long
+    amount REAL NOT NULL,
+    description TEXT NOT NULL,
+    type TEXT NOT NULL,
+    category TEXT NOT NULL,
+--     date TEXT AS LocalDateTime NOT NULL,
+    isPeriodic INTEGER NOT NULL
+);
+
+insertOperation:
+INSERT OR REPLACE INTO OperationTable
+VALUES ?;
