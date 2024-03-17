@@ -1,7 +1,9 @@
 package data.datasource.local
 
 import data.datasource.OperationDataSource
+import domain.model.Category
 import domain.model.Operation
+import domain.model.OperationType
 import kotlinx.datetime.LocalDateTime
 
 class LocalOperationDataSource : OperationDataSource {
@@ -12,8 +14,8 @@ class LocalOperationDataSource : OperationDataSource {
                 id = -1,
                 amount = 0.0,
                 description = "Test",
-                type = "",
-                category = "",
+                type = OperationType.INCOME.operation,
+                category = Category.EDUCATION.name,
                 date = LocalDateTime(2024, 3, 6, 1, 1 ,1, 1),
                 isPeriodic = false,
             )
