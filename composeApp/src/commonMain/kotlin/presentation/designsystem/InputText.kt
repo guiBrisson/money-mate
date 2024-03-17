@@ -31,6 +31,8 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import presentation.theme.FONT_32
+import presentation.theme.FONT_48
 import presentation.theme.oswaldFontFamily
 import utils.MoneyVisualTransformation
 import utils.canBeLong
@@ -172,15 +174,15 @@ fun MoneyInputText(
         Text(
             text = "$",
             fontFamily = oswaldFontFamily(),
-            fontSize = 32.sp,
+            fontSize = FONT_32,
             fontWeight = FontWeight.Light,
         )
 
         val textStyle = TextStyle(
-            fontSize = 48.sp,
+            fontSize = FONT_48,
             fontFamily = oswaldFontFamily(),
             color = MaterialTheme.colors.onBackground,
-            lineHeight = 48.sp,
+            lineHeight = FONT_48,
         )
 
         BasicTextField(
