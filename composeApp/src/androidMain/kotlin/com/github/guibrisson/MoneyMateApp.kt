@@ -1,7 +1,7 @@
 package com.github.guibrisson
 
 import android.app.Application
-import initKoin
+import utils.initKoin
 import org.koin.android.ext.koin.androidContext
 
 class MoneyMateApp : Application() {

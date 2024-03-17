@@ -1,3 +1,5 @@
+package utils
+
 import data.datasource.local.platformModule
 import data.di.dataModule
 import org.koin.core.context.startKoin
@@ -9,3 +11,6 @@ fun initKoin(appDeclaration: KoinAppDeclaration = { }) = startKoin {
     appDeclaration()
     modules(viewModelModule, dataModule, platformModule())
 }
+
+// called by iOS
+fun initKoin() = initKoin(appDeclaration = { })
