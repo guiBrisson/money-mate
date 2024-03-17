@@ -30,10 +30,11 @@ import presentation.designsystem.InputText
 import presentation.designsystem.MoneyInputText
 import presentation.designsystem.TabBar
 import presentation.designsystem.TopAppBar
-import presentation.theme.SMALL_PADDING
+import presentation.theme.EXTRA_SMALL_PADDING
 import presentation.theme.LARGE_PADDING
 import presentation.theme.MEDIUM_PADDING
 import presentation.theme.MoneyMateTheme
+import presentation.theme.SMALL_PADDING
 import presentation.theme.border
 import presentation.theme.expense
 import presentation.theme.income
@@ -96,17 +97,17 @@ internal fun NewOperationScreen(
             Text("Add ${selectedOperation.operation.lowercase()}")
 
             MoneyInputText(
-                modifier = Modifier
-                    .padding(top = MEDIUM_PADDING),
                 value = operationAmount,
                 onValueChange = { operationAmount = it }
             )
 
-            Text("Description")
+            Text(modifier = Modifier
+                .padding(top = LARGE_PADDING),
+                text = "Description")
 
             InputText(
                 modifier = Modifier
-                    .padding(top = SMALL_PADDING),
+                    .padding(top = EXTRA_SMALL_PADDING),
                 value = description,
                 onValueChange = {
                     description = it
@@ -115,13 +116,13 @@ internal fun NewOperationScreen(
 
             Text(
                 modifier = Modifier
-                    .padding(top = MEDIUM_PADDING),
+                    .padding(top = LARGE_PADDING),
                 text = "Category"
             )
 
             InputText(
                 modifier = Modifier
-                    .padding(top = SMALL_PADDING),
+                    .padding(top = EXTRA_SMALL_PADDING),
                 value = category.categoryName,
                 onValueChange = {
                     category = Category.valueOf(it.uppercase())
