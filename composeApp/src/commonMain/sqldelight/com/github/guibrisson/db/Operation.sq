@@ -6,8 +6,8 @@ CREATE TABLE OperationTable (
     description TEXT NOT NULL,
     type TEXT NOT NULL,
     category TEXT NOT NULL,
---     date TEXT AS LocalDateTime NOT NULL,
-    isPeriodic INTEGER NOT NULL
+    date TEXT AS LocalDateTime NOT NULL,
+    isPeriodic INTEGER NOT NULL           -- 0 = false; 1 = true
 );
 
 insertOperation:
