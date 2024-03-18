@@ -1,10 +1,17 @@
 package data.datasource.local
 
+import com.github.guibrisson.db.MoneyMateDatabase
+import com.github.guibrisson.db.OperationTable
 import data.datasource.OperationDataSource
 import domain.model.Operation
 import kotlinx.datetime.LocalDateTime
+import org.koin.core.component.KoinComponent
+import org.koin.core.component.inject
 
-class LocalOperationDataSource : OperationDataSource {
+class LocalOperationDataSource: KoinComponent, OperationDataSource {
+    private val databaseWrapper: DatabaseWrapper by inject()
+    private val database: MoneyMateDatabase = databaseWrapper.instance()
+
     override suspend fun getById(id: Int): Result<Operation> {
         //TODO remove this later, mocked for now
         return Result.success(
@@ -14,7 +21,7 @@ class LocalOperationDataSource : OperationDataSource {
                 description = "Test",
                 type = "",
                 category = "",
-                date = LocalDateTime(2024, 3, 6, 1, 1 ,1, 1),
+                date = LocalDateTime(2024, 3, 6, 1, 1, 1, 1),
                 isPeriodic = false,
             )
         )
