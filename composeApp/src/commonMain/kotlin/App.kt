@@ -12,8 +12,6 @@ import utils.onboardPreference
 
 @Composable
 fun App() {
-    initKoin()
-
     MoneyMateTheme {
         val onboardDone by onboardPreference()
         val route = if (onboardDone) Route.HOME else Route.BALANCE

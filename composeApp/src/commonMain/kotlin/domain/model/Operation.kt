@@ -4,7 +4,7 @@ import kotlinx.datetime.LocalDateTime
 
 
 data class Operation(
-    val id: Int,
+    val id: Long,
     val amount: Double,
     val description: String,
     val type: String,

@@ -1,12 +1,18 @@
 package data.datasource.local
 
+import com.github.guibrisson.db.MoneyMateDatabase
 import data.datasource.OperationDataSource
 import domain.model.Category
 import domain.model.Operation
 import domain.model.OperationType
 import kotlinx.datetime.LocalDateTime
+import org.koin.core.component.KoinComponent
+import org.koin.core.component.inject
 
-class LocalOperationDataSource : OperationDataSource {
+class LocalOperationDataSource: KoinComponent, OperationDataSource {
+    private val databaseWrapper: DatabaseWrapper by inject()
+    private val database: MoneyMateDatabase = databaseWrapper.instance()
+
     override suspend fun getById(id: Int): Result<Operation> {
         //TODO remove this later, mocked for now
         return Result.success(
