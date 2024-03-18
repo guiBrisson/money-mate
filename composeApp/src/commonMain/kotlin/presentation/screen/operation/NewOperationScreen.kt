@@ -29,6 +29,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.dp
 import domain.model.Category
 import domain.model.OperationType
@@ -257,6 +259,10 @@ fun CustomSwitch(onChecked: (Boolean) -> Unit) {
     }
 
     Switch(
+        modifier = Modifier
+            .semantics {
+               contentDescription = "True or false selector"
+            },
         checked = isChecked,
         onCheckedChange = { checked ->
             isChecked = checked
