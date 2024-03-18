@@ -13,3 +13,7 @@ CREATE TABLE OperationTable (
 insertOperation:
 INSERT OR REPLACE INTO OperationTable
 VALUES ?;
+
+allOperations:
+SELECT *
+FROM OperationTable;

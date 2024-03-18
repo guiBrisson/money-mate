@@ -5,12 +5,9 @@ import com.github.guibrisson.db.MoneyMateDatabase
 import org.koin.dsl.module
 
 class IOSDatabaseWrapper : DatabaseWrapper {
-    private val driver = NativeSqliteDriver(MoneyMateDatabase.Schema, "MoneyMate.db")
-    override val instance: MoneyMateDatabase = MoneyMateDatabase(driver, operationTableAdapter())
+    override val driver = NativeSqliteDriver(MoneyMateDatabase.Schema, "MoneyMate.db")
 }
 
 actual fun localDatabasePlatformModule() = module {
-    single {
-        IOSDatabaseWrapper()
-    }
+    factory<DatabaseWrapper> { IOSDatabaseWrapper() }
 }

@@ -7,12 +7,9 @@ import org.koin.android.ext.koin.androidContext
 import org.koin.dsl.module
 
 class AndroidDatabaseWrapper(context: Context) : DatabaseWrapper {
-    private val driver = AndroidSqliteDriver(MoneyMateDatabase.Schema, context, "MoneyMate.db")
-    override val instance: MoneyMateDatabase = MoneyMateDatabase(driver, operationTableAdapter())
+    override val driver = AndroidSqliteDriver(MoneyMateDatabase.Schema, context, "MoneyMate.db")
 }
 
 actual fun localDatabasePlatformModule() = module {
-    single {
-        AndroidDatabaseWrapper(androidContext())
-    }
+    factory<DatabaseWrapper> { AndroidDatabaseWrapper(androidContext()) }
 }

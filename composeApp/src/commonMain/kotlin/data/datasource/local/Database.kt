@@ -1,6 +1,7 @@
 package data.datasource.local
 
 import app.cash.sqldelight.ColumnAdapter
+import app.cash.sqldelight.db.SqlDriver
 import com.github.guibrisson.db.MoneyMateDatabase
 import com.github.guibrisson.db.OperationTable
 import kotlinx.datetime.LocalDateTime
@@ -14,7 +15,15 @@ import org.koin.core.module.Module
 expect fun localDatabasePlatformModule(): Module
 
 interface DatabaseWrapper {
-    val instance: MoneyMateDatabase?
+    val driver: SqlDriver
+
+    fun instance(): MoneyMateDatabase = MoneyMateDatabase(driver, operationTableAdapter())
+
+    private fun operationTableAdapter(): OperationTable.Adapter {
+        return OperationTable.Adapter(
+            dateAdapter = dateColumnAdapter(),
+        )
+    }
 
     private fun dateColumnAdapter(): ColumnAdapter<LocalDateTime, String> {
         return object : ColumnAdapter<LocalDateTime, String> {
@@ -23,14 +32,8 @@ interface DatabaseWrapper {
             }
 
             override fun encode(value: LocalDateTime): String {
-                return value.toString() //TODO this does not work 100%, it needs a proper date parser
+                return value.toString() //TODO this works fine but it needs a proper date parser
             }
         }
-    }
-
-    fun operationTableAdapter(): OperationTable.Adapter {
-        return OperationTable.Adapter(
-            dateAdapter = dateColumnAdapter(),
-        )
     }
 }
