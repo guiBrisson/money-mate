@@ -1,9 +1,10 @@
 package data.datasource.local
 
 import com.github.guibrisson.db.MoneyMateDatabase
-import com.github.guibrisson.db.OperationTable
 import data.datasource.OperationDataSource
+import domain.model.Category
 import domain.model.Operation
+import domain.model.OperationType
 import kotlinx.datetime.LocalDateTime
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
@@ -19,9 +20,9 @@ class LocalOperationDataSource: KoinComponent, OperationDataSource {
                 id = -1,
                 amount = 0.0,
                 description = "Test",
-                type = "",
-                category = "",
-                date = LocalDateTime(2024, 3, 6, 1, 1, 1, 1),
+                type = OperationType.INCOME,
+                category = Category.EDUCATION,
+                date = LocalDateTime(2024, 3, 6, 1, 1 ,1, 1),
                 isPeriodic = false,
             )
         )

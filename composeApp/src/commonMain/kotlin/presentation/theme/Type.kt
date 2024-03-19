@@ -1,16 +1,21 @@
 package presentation.theme
 
-import androidx.compose.runtime.Composable
 import androidx.compose.material.Typography
+import androidx.compose.runtime.Composable
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.unit.sp
-import moneymate.composeapp.generated.resources.*
 import moneymate.composeapp.generated.resources.Res
+import moneymate.composeapp.generated.resources.inter_bold
 import moneymate.composeapp.generated.resources.inter_light
 import moneymate.composeapp.generated.resources.inter_medium
 import moneymate.composeapp.generated.resources.inter_regular
+import moneymate.composeapp.generated.resources.inter_semibold
+import moneymate.composeapp.generated.resources.oswald_bold
+import moneymate.composeapp.generated.resources.oswald_light
+import moneymate.composeapp.generated.resources.oswald_medium
+import moneymate.composeapp.generated.resources.oswald_regular
+import moneymate.composeapp.generated.resources.oswald_semibold
 import org.jetbrains.compose.resources.ExperimentalResourceApi
 import org.jetbrains.compose.resources.Font
 
@@ -40,8 +45,8 @@ fun getTypography(): Typography {
         defaultFontFamily = interFontFamily(),
         button = TextStyle(
             fontWeight = FontWeight.Medium,
-            fontSize = 14.sp,
-            lineHeight = 16.sp,
+            fontSize = FONT_14,
+            lineHeight = FONT_16,
         )
     )
 }

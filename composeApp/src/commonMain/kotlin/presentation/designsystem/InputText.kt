@@ -6,7 +6,12 @@ import androidx.compose.animation.fadeOut
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.defaultMinSize
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
@@ -30,7 +35,10 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
+import presentation.theme.FONT_32
+import presentation.theme.FONT_48
+import presentation.theme.INPUT_HEIGHT
+import presentation.theme.MIN_INPUT_HEIGHT
 import presentation.theme.oswaldFontFamily
 import utils.MoneyVisualTransformation
 import utils.canBeLong
@@ -70,7 +78,7 @@ private fun BaseInputText(
     ) { innerTextField ->
         Row(
             modifier = Modifier
-                .defaultMinSize(minHeight = 48.dp)
+                .defaultMinSize(minHeight = MIN_INPUT_HEIGHT)
                 .clip(MaterialTheme.shapes.small)
                 .background(MaterialTheme.colors.surface)
                 .padding(12.dp),
@@ -125,7 +133,7 @@ fun SearchInputText(
     BaseInputText(
         value = value,
         onValueChange = onValueChange,
-        modifier = modifier.height(52.dp),
+        modifier = modifier.height(INPUT_HEIGHT),
         singleLine = true,
         label = searchLabel,
         leadingIcon = leadingIcon,
@@ -150,7 +158,7 @@ fun InputText(
     BaseInputText(
         value = value,
         onValueChange = onValueChange,
-        modifier = modifier.height(52.dp),
+        modifier = modifier.height(INPUT_HEIGHT),
         singleLine = true,
         label = basicLabel,
     )
@@ -172,15 +180,15 @@ fun MoneyInputText(
         Text(
             text = "$",
             fontFamily = oswaldFontFamily(),
-            fontSize = 32.sp,
+            fontSize = FONT_32,
             fontWeight = FontWeight.Light,
         )
 
         val textStyle = TextStyle(
-            fontSize = 48.sp,
+            fontSize = FONT_48,
             fontFamily = oswaldFontFamily(),
             color = MaterialTheme.colors.onBackground,
-            lineHeight = 48.sp,
+            lineHeight = FONT_48,
         )
 
         BasicTextField(
