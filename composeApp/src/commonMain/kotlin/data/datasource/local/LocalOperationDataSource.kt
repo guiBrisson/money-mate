@@ -20,8 +20,8 @@ class LocalOperationDataSource: KoinComponent, OperationDataSource {
                 id = -1,
                 amount = 0.0,
                 description = "Test",
-                type = OperationType.INCOME.operation,
-                category = Category.EDUCATION.name,
+                type = OperationType.INCOME,
+                category = Category.EDUCATION,
                 date = LocalDateTime(2024, 3, 6, 1, 1 ,1, 1),
                 isPeriodic = false,
             )

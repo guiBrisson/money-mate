@@ -51,5 +51,9 @@ enum class Category(val categoryName: String, val primaryColor: Color,
     TRAVEL("Travel", indigo500, indigo600, Res.drawable.ic_travel),
     TRANSPORT("Transport", purple600, purple500, Res.drawable.ic_transport),
     GIFTS_DONATIONS("Gifts & Donations", pink600, pink500, Res.drawable.ic_gifts),
-    MISCELLANEOUS("Miscellaneous", rose600, rose500, Res.drawable.ic_miscellaneous)
+    MISCELLANEOUS("Miscellaneous", rose600, rose500, Res.drawable.ic_miscellaneous);
+
+    companion object {
+        fun all(): Array<Category> = enumValues<Category>()
+    }
 }

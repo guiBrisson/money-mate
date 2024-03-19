@@ -6,5 +6,11 @@ import presentation.theme.income
 
 enum class OperationType(val operation: String, val color: Color) {
     EXPENSE("Expense", expense),
-    INCOME("Income", income)
+    INCOME("Income", income);
+
+    companion object {
+        private fun all(): Array<OperationType> = enumValues<OperationType>()
+
+        fun operationNames(): List<String> = all().map { it.operation }
+    }
 }

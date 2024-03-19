@@ -13,7 +13,7 @@ import kotlin.test.Test
 class TabBarTest {
 
     private val tabContentColors = listOf(expense, income)
-    private val tabItems = listOf(OperationType.EXPENSE.operation, OperationType.INCOME.operation)
+    private val tabItems = OperationType.operationNames()
 
     @OptIn(ExperimentalTestApi::class)
     @Test

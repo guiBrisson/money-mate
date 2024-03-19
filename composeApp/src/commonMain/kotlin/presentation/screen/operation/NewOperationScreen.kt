@@ -31,7 +31,6 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
-import androidx.compose.ui.unit.dp
 import domain.model.Category
 import domain.model.OperationType
 import moe.tlaster.precompose.koin.koinViewModel
@@ -92,22 +91,10 @@ internal fun NewOperationScreen(
     }
 
     val tabContentColors = listOf(expense, income)
-    val operations = listOf(OperationType.EXPENSE.operation, OperationType.INCOME.operation)
+    val operations = OperationType.operationNames().toList()
 
     //TODO: Remover esta lista ao implementar lógica de navegação para tela de categorias
-    val categories = listOf(
-        Category.TRAVEL,
-        Category.DINING_OUT,
-        Category.HEALTH_WELLNESS,
-        Category.EDUCATION,
-        Category.ENTERTAINMENT,
-        Category.GIFTS_DONATIONS,
-        Category.GROCERIES,
-        Category.INCOME,
-        Category.MISCELLANEOUS,
-        Category.TRANSPORT,
-        Category.SUBSCRIPTION
-    )
+    val categories = Category.all()
 
     Scaffold(
         topBar = {
@@ -216,10 +203,10 @@ fun Selector(modifier: Modifier = Modifier, icon: DrawableResource? = null,
             .height(INPUT_HEIGHT)
             .clip(MaterialTheme.shapes.small)
             .background(MaterialTheme.colors.surface)
-            .padding(SMALL_PADDING)
-            .clickable { onSelectorClick() },
+            .clickable { onSelectorClick() }
+            .padding(SMALL_PADDING),
         verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.spacedBy(8.dp)
+        horizontalArrangement = Arrangement.spacedBy(EXTRA_SMALL_PADDING)
     ) {
         icon?.let {
             Icon(
