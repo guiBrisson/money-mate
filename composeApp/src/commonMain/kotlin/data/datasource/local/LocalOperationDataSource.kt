@@ -1,5 +1,6 @@
 package data.datasource.local
 
+import co.touchlab.kermit.Logger
 import com.github.guibrisson.db.MoneyMateDatabase
 import data.datasource.OperationDataSource
 import domain.model.Category
@@ -12,6 +13,7 @@ import org.koin.core.component.inject
 class LocalOperationDataSource: KoinComponent, OperationDataSource {
     private val databaseWrapper: DatabaseWrapper by inject()
     private val database: MoneyMateDatabase = databaseWrapper.instance()
+    private val log = Logger.withTag(this::class.simpleName ?: "LocalOperationDataSource")
 
     override suspend fun getById(id: Int): Result<Operation> {
         //TODO remove this later, mocked for now

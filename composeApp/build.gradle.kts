@@ -52,6 +52,7 @@ kotlin {
             implementation(libs.precompose.navigation)
             implementation(libs.precompose.viewmodel)
             implementation(libs.precompose.koin)
+            implementation(libs.kermit)
             implementation(libs.koin.core)
             implementation(libs.multiplatform.settings)
             implementation(libs.sqldelight.runtime)
