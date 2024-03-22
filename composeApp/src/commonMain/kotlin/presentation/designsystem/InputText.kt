@@ -41,7 +41,7 @@ import presentation.theme.INPUT_HEIGHT
 import presentation.theme.MIN_INPUT_HEIGHT
 import presentation.theme.oswaldFontFamily
 import utils.MoneyVisualTransformation
-import utils.canBeLong
+import utils.extensions.canBeLong
 
 
 @Composable
