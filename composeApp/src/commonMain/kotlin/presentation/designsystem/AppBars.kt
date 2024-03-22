@@ -37,7 +37,7 @@ import androidx.compose.ui.zIndex
 import kotlinx.coroutines.launch
 import presentation.theme.CORNER_RADIUS_4
 import presentation.theme.FONT_16
-import presentation.theme.SUPER_SMALL_PADDING
+import presentation.theme.PADDING_2
 import presentation.theme.ZERO_DP
 import presentation.theme.gray400
 
@@ -98,7 +98,7 @@ fun TabBar(modifier: Modifier = Modifier, pages: List<String>,
                     .zIndex(-1f)
                     .fillMaxWidth()
                     .fillMaxHeight()
-                    .padding(SUPER_SMALL_PADDING)
+                    .padding(PADDING_2)
                     .background(
                         color = contentColors[selectedTabIndex].copy(alpha = 0.12f),
                         shape = RoundedCornerShape(CORNER_RADIUS_4)

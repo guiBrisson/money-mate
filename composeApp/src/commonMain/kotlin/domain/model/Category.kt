@@ -55,5 +55,6 @@ enum class Category(val categoryName: String, val primaryColor: Color,
 
     companion object {
         fun all(): Array<Category> = enumValues<Category>()
+        fun default() = ENTERTAINMENT
     }
 }

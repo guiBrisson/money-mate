@@ -12,5 +12,7 @@ enum class OperationType(val operation: String, val color: Color) {
         private fun all(): Array<OperationType> = enumValues<OperationType>()
 
         fun operationNames(): List<String> = all().map { it.operation }
+
+        fun default() = EXPENSE
     }
 }

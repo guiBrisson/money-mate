@@ -7,6 +7,6 @@ import presentation.screen.operation.NewOperationViewModel
 
 val viewModelModule = module {
     factory { HomeViewModel() }
-    factory { NewOperationViewModel() }
+    factory { NewOperationViewModel(get()) }
     factory { BalanceViewModel(get()) }
 }
