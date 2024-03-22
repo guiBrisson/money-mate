@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -15,11 +16,11 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
-import androidx.compose.material.Surface
 import androidx.compose.material.Switch
 import androidx.compose.material.SwitchDefaults
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -39,20 +40,19 @@ import moneymate.composeapp.generated.resources.ic_arrow_right
 import org.jetbrains.compose.resources.DrawableResource
 import org.jetbrains.compose.resources.ExperimentalResourceApi
 import org.jetbrains.compose.resources.painterResource
-import org.jetbrains.compose.ui.tooling.preview.Preview
 import presentation.designsystem.InputText
+import presentation.designsystem.LoadingButton
 import presentation.designsystem.MoneyInputText
-import presentation.designsystem.PrimaryButton
 import presentation.designsystem.TabBar
 import presentation.designsystem.TopAppBar
-import presentation.theme.EXTRA_SMALL_PADDING
 import presentation.theme.FONT_14
 import presentation.theme.FONT_16
 import presentation.theme.INPUT_HEIGHT
-import presentation.theme.LARGE_PADDING
-import presentation.theme.MEDIUM_PADDING
-import presentation.theme.MoneyMateTheme
-import presentation.theme.SMALL_PADDING
+import presentation.theme.PADDING_12
+import presentation.theme.PADDING_16
+import presentation.theme.PADDING_24
+import presentation.theme.PADDING_8
+import presentation.theme.ZERO_DP
 import presentation.theme.border
 import presentation.theme.expense
 import presentation.theme.income
@@ -61,7 +61,6 @@ import presentation.theme.income
 fun NewOperationRoute(
     onBack: () -> Unit,
 ) {
-    val viewModel = koinViewModel(NewOperationViewModel::class)
     NewOperationScreen(onBack = onBack)
 }
 
@@ -70,6 +69,9 @@ fun NewOperationRoute(
 internal fun NewOperationScreen(
     onBack: () -> Unit,
 ) {
+    val viewModel = koinViewModel(NewOperationViewModel::class)
+    val operation by viewModel.operation.collectAsState()
+
     var operationAmount by remember {
         mutableStateOf("")
     }
@@ -103,13 +105,13 @@ internal fun NewOperationScreen(
     ) {
         Column(
             modifier = Modifier
-                .padding(horizontal = LARGE_PADDING)
+                .padding(horizontal = PADDING_24)
                 .fillMaxSize()
-                .verticalScroll(rememberScrollState())
+                .verticalScroll(rememberScrollState()),
         ) {
             TabBar(
                 modifier = Modifier
-                    .padding(vertical = LARGE_PADDING),
+                    .padding(vertical = PADDING_24),
                 pages = operations,
                 contentColors = tabContentColors
             ) { selectedItem ->
@@ -124,12 +126,12 @@ internal fun NewOperationScreen(
             )
 
             Text(modifier = Modifier
-                .padding(top = LARGE_PADDING),
+                .padding(top = PADDING_24),
                 text = "Description")
 
             InputText(
                 modifier = Modifier
-                    .padding(top = EXTRA_SMALL_PADDING),
+                    .padding(top = PADDING_8),
                 value = description,
                 label = "e.g Hamburger from Bobs",
                 onValueChange = {
@@ -139,13 +141,13 @@ internal fun NewOperationScreen(
 
             Text(
                 modifier = Modifier
-                    .padding(top = LARGE_PADDING),
+                    .padding(top = PADDING_24),
                 text = "Category"
             )
 
             Selector(
                 modifier = Modifier
-                    .padding(top = EXTRA_SMALL_PADDING)
+                    .padding(top = PADDING_8)
                     .fillMaxWidth(),
                 icon = category?.icon,
                 iconTint = category?.primaryColor,
@@ -163,7 +165,7 @@ internal fun NewOperationScreen(
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(top = MEDIUM_PADDING),
+                    .padding(top = PADDING_16),
                 horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.CenterVertically
             ){
@@ -179,15 +181,29 @@ internal fun NewOperationScreen(
             val enabled = operationAmount.isNotEmpty() &&
                     description.isNotEmpty() && category != null
 
-            PrimaryButton(
+            LoadingButton(
                 modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(bottom = MEDIUM_PADDING),
-                onClick = {  },
+                    .defaultMinSize(minWidth = ZERO_DP)
+                    .padding(bottom = PADDING_16),
+                text = "Done",
                 enabled = enabled,
-            ) {
-                Text(text = "Done", style = MaterialTheme.typography.button)
-            }
+                state = operation,
+                onSnackClick = { closeScreen ->
+                    if (closeScreen)
+                        onBack.invoke()
+                    else
+                        viewModel.refreshState()
+                },
+                onButtonClick = {
+                    viewModel.saveOperation(
+                        amount = operationAmount,
+                        description = description,
+                        type = selectedOperation,
+                        category = category ?: Category.default(),
+                        isPeriodic = isMonthlyOperation
+                    )
+                }
+            )
         }
     }
 }
@@ -204,9 +220,9 @@ fun Selector(modifier: Modifier = Modifier, icon: DrawableResource? = null,
             .clip(MaterialTheme.shapes.small)
             .background(MaterialTheme.colors.surface)
             .clickable { onSelectorClick() }
-            .padding(SMALL_PADDING),
+            .padding(PADDING_12),
         verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.spacedBy(EXTRA_SMALL_PADDING)
+        horizontalArrangement = Arrangement.spacedBy(PADDING_8)
     ) {
         icon?.let {
             Icon(
@@ -262,17 +278,4 @@ fun CustomSwitch(onChecked: (Boolean) -> Unit) {
             uncheckedTrackColor = MaterialTheme.colors.surface
         )
     )
-}
-
-@Composable
-@Preview
-private fun PreviewNewOperationScreen() {
-    MoneyMateTheme {
-        Surface(
-            modifier = Modifier.fillMaxSize(),
-            color = MaterialTheme.colors.background
-        ) {
-            NewOperationScreen(onBack = { })
-        }
-    }
 }
