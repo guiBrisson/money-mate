@@ -53,6 +53,7 @@ import presentation.theme.LARGE_PADDING
 import presentation.theme.MEDIUM_PADDING
 import presentation.theme.MoneyMateTheme
 import presentation.theme.SMALL_PADDING
+import presentation.theme.SUPER_SMALL_PADDING
 import presentation.theme.border
 import presentation.theme.expense
 import presentation.theme.income
@@ -60,15 +61,17 @@ import presentation.theme.income
 @Composable
 fun NewOperationRoute(
     onBack: () -> Unit,
+    onSelectCategory: () -> Unit
 ) {
     val viewModel = koinViewModel(NewOperationViewModel::class)
-    NewOperationScreen(onBack = onBack)
+    NewOperationScreen(onBack = onBack, onSelectCategory = onSelectCategory)
 }
 
 @OptIn(ExperimentalResourceApi::class)
 @Composable
 internal fun NewOperationScreen(
     onBack: () -> Unit,
+    onSelectCategory: () -> Unit
 ) {
     var operationAmount by remember {
         mutableStateOf("")
@@ -123,13 +126,15 @@ internal fun NewOperationScreen(
                 onValueChange = { operationAmount = it }
             )
 
-            Text(modifier = Modifier
-                .padding(top = LARGE_PADDING),
-                text = "Description")
+            Text(
+                modifier = Modifier
+                    .padding(top = LARGE_PADDING),
+                text = "Description"
+            )
 
             InputText(
                 modifier = Modifier
-                    .padding(top = EXTRA_SMALL_PADDING),
+                    .padding(top = SUPER_SMALL_PADDING),
                 value = description,
                 label = "e.g Hamburger from Bobs",
                 onValueChange = {
@@ -150,15 +155,10 @@ internal fun NewOperationScreen(
                 icon = category?.icon,
                 iconTint = category?.primaryColor,
                 value = category?.categoryName,
-                label = "category"
-            ) {
-                //TODO: Call Categories Screen
-                //Remover este código ao implementar navegação para tela de categorias
-                //OBS: Tela de categorias precisa ter um callback para atualizar a category
-                //desta tela. Remover também a lista categories
-                val randomInt = (0..9).random()
-                category = categories[randomInt]
-            }
+                label = "category",
+                onSelectorClick = onSelectCategory
+
+            )
 
             Row(
                 modifier = Modifier
@@ -166,7 +166,7 @@ internal fun NewOperationScreen(
                     .padding(top = MEDIUM_PADDING),
                 horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.CenterVertically
-            ){
+            ) {
                 Text(text = "Is this a monthly operation?")
 
                 CustomSwitch {
@@ -183,7 +183,7 @@ internal fun NewOperationScreen(
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(bottom = MEDIUM_PADDING),
-                onClick = {  },
+                onClick = { },
                 enabled = enabled,
             ) {
                 Text(text = "Done", style = MaterialTheme.typography.button)
@@ -194,9 +194,10 @@ internal fun NewOperationScreen(
 
 @OptIn(ExperimentalResourceApi::class)
 @Composable
-fun Selector(modifier: Modifier = Modifier, icon: DrawableResource? = null,
-             iconTint: Color? = null, value: String? = null, label: String,
-             onSelectorClick: () -> Unit
+fun Selector(
+    modifier: Modifier = Modifier, icon: DrawableResource? = null,
+    iconTint: Color? = null, value: String? = null, label: String,
+    onSelectorClick: () -> Unit
 ) {
     Row(
         modifier = modifier
@@ -248,7 +249,7 @@ fun CustomSwitch(onChecked: (Boolean) -> Unit) {
     Switch(
         modifier = Modifier
             .semantics {
-               contentDescription = "True or false selector"
+                contentDescription = "True or false selector"
             },
         checked = isChecked,
         onCheckedChange = { checked ->
@@ -272,7 +273,7 @@ private fun PreviewNewOperationScreen() {
             modifier = Modifier.fillMaxSize(),
             color = MaterialTheme.colors.background
         ) {
-            NewOperationScreen(onBack = { })
+            NewOperationScreen(onBack = { }, onSelectCategory = { })
         }
     }
 }
