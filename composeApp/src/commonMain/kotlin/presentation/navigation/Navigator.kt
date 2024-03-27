@@ -34,7 +34,7 @@ fun navHost(modifier: Modifier = Modifier, initialRoute: String) {
         }
 
         scene(route = Route.CATEGORY) {
-            CategoryRoute(onBack = { nav.goBack() })
+            CategoryRoute(onBack = { nav.goBack() } )
         }
     }
 }
